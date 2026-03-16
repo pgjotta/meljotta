@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PjTidres</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#fff0f3;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+padding:100px 20px;
+}
+
+.hero h1{
+font-size:50px;
+color:#ff2e63;
+}
+
+.hero p{
+font-size:20px;
+color:#555;
+}
+
+/* CONTADOR */
+
+.counter{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:40px;
+flex-wrap:wrap;
+}
+
+.box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.box span{
+font-size:30px;
+color:#ff2e63;
+}
+
+/* GALERIA */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:40px;
+max-width:900px;
+margin:auto;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* CORAÇÕES */
+
+.heart{
+position:fixed;
+color:red;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+}
+100%{
+transform:translateY(100vh);
+}
+}
+
+footer{
+margin:40px;
+color:#555;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<h1>Pedro J. & Melissa T.</h1>
+<p>desde 20 de setembro de 2025</p>
+</div>
+
+<h2>Estamos juntos há:</h2>
+
+<div class="counter">
+
+<div class="box">
+<span id="days">0</span>
+<p>Dias</p>
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+<p>Horas</p>
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+<p>Minutos</p>
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+<p>Segundos</p>
+</div>
+
+</div>
+
+<h2>Nossas fotos</h2>
+
+<div class="gallery">
+
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+<img src="foto6.jpg">
+
+</div>
+
+<audio autoplay loop controls>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<footer>
+PJ & Tidres
+</footer>
+
+<script>
+
+/* CONTADOR */
+
+const startDate = new Date("2025-09-20T00:00:00");
+
+function updateCounter(){
+
+const now = new Date();
+
+const diff = now - startDate;
+
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor((diff/(1000*60*60))%24);
+const minutes = Math.floor((diff/(1000*60))%60);
+const seconds = Math.floor((diff/1000)%60);
+
+document.getElementById("days").innerText = days;
+document.getElementById("hours").innerText = hours;
+document.getElementById("minutes").innerText = minutes;
+document.getElementById("seconds").innerText = seconds;
+
+}
+
+setInterval(updateCounter,1000);
+
+/* CORAÇÕES */
+
+function createHeart(){
+
+const heart = document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
